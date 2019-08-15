@@ -23,7 +23,11 @@ defined as follows:
 
 The prior used to generate all these posteriors is described in https://arxiv.org/abs/1902.10331 , it is uniform in component masses, effective spin and luminosity volume.
 
-An example code `example_loading.ipynb` is provided, that loads the samples into python dictionaries.
+A snippet `load_samples.py` is provided, that loads the samples into python dictionaries:
+```
+import load_samples
+ev_samples_dic = load_samples.load_samples()
+```
 
 ### Acknowledgement
 
