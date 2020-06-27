@@ -21,13 +21,19 @@ defined as follows:
 * `tc`: arrival time, with arbitrary offset
 * `DL`: luminosity distance
 
-The prior used to generate all these posteriors is described in https://arxiv.org/abs/1902.10331 , it is uniform in component masses, effective spin and luminosity volume.
+The prior used to generate all these posteriors is described in https://arxiv.org/abs/1902.10331 , it is uniform in component masses, effective spin and luminosity volume. The waveform model used was IMRPhenomD [10.1103/PhysRevD.93.044007]. 
 
 A snippet `load_samples.py` is provided, that loads the samples into python dictionaries:
 ```
 import load_samples
 ev_samples_dic = load_samples.load_samples()
 ```
+
+### 2020/06/26 edit
+* We update the parameter estimation samples following improvements in our parameter estimation code. The improvement consisted in adopting a parametrization of the sampled space in which the posterior distributions are better behaved. The main effect is a mild change in the mass ratio distributions, especially close to $q \approx 1$. The new samples should be preferred and are loaded by default with the above snippet.
+* We now include data from the Virgo detector in the parameter estimation of GW170729. The Virgo data for GW170729 was overlooked in the previous release.
+* The previous version of the samples was moved to `legacy/`.
+* Note about `vphi` and `psi`: for non-precessing waveform models with quadrupolar radiation $(\ell, m) = (2, \pm2)$ such as IMRPhenomD there is a discrete symmetry $\varphi, \psi \to \varphi + \pi/2, \psi + \pi/2$. We exploit this symmetry by sampling in the variables $\varphi + \psi$ and $\varphi - \psi$ from 0 to $\pi$. For this reason the 2d posterior in $\varphi, \psi$ variables is truncated, and the 1d posterior is distorted. If these distributions are of interest, one may duplicate the set of samples, and transform the copy as follows: $\varphi, \psi \to \varphi + \pi/2, \psi + \pi/2$ and fold $\varphi, \psi$ to $(0, \pi)$.
 
 ### Acknowledgement
 
